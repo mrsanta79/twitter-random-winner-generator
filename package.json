@@ -1,12 +1,12 @@
 {
     "name": "twitter-random-winner-generator",
     "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
+    "description": "Generate random user as a winner from twitter",
+    "main": "main.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node app.js",
-        "dev": "nodemon app.js"
+        "start": "node main.js",
+        "dev": "nodemon main.js"
     },
     "keywords": [],
     "author": "",
@@ -19,7 +19,6 @@
         "express": "^4.17.1",
         "forever": "^3.0.0",
         "helmet": "^4.0.0",
-        "nodemailer": "^6.4.11",
         "redirect-ssl": "^2.0.0",
         "tslib": "^2.0.1"
     }
