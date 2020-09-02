@@ -6,7 +6,11 @@ const ejs = require('ejs');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const https = require('https');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+
 require('dotenv').config();
+
 const webRoutes = require('./app/routes/web');
 const apiRoutes = require('./app/routes/api');
 
@@ -26,6 +30,14 @@ app.use(helmet.referrerPolicy());
 app.use(helmet.xssFilter());
 app.use(cors());
 app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(session({
+    user: null,
+    tokenSecret: null,
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+}));
 
 // View engine setup
 app.engine('ejs', ejs.renderFile);
