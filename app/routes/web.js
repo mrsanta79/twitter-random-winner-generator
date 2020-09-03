@@ -85,7 +85,7 @@ webRoutes.all('/winners', async (req, res) => {
             break;
     }
 
-    wtClient.get(url, async function (error, twitter, response) {
+    twtClient.get(url, async function (error, twitter, response) {
         if (error) {
             console.log(error);
         }
