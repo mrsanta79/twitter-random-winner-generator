@@ -12,6 +12,10 @@
 
                         <a href="followers" v-on:click="chooseOption('followers', $event)" v-bind:class="chosenOption != null && chosenOption === 'followers' ? 'active' : ''">Followers</a>
                         <a href="tweets" v-on:click="chooseOption('tweets', $event)" v-bind:class="chosenOption != null && chosenOption === 'tweets' ? 'active' : ''">Tweets</a>
+                        <a href="retweets" v-on:click="chooseOption('retweets', $event)" v-bind:class="chosenOption != null && chosenOption === 'retweets' ? 'active' : ''">Retweets</a>
+                        <div class="ui input">
+                            <input type="text" name="tweet_url" v-bind:style="{ display: chosenOption === 'retweets' ? 'block' : 'none' }" style="display: none;" :required="chosenOption === 'retweets'" v-model="tweetUrl" placeholder="Tweet URL">
+                        </div>
                     </div>
                     <h2 class="color white font-comfortaa" style="margin-top: 50px;">Maximum number of winners?</h2>
                     <div class="">
@@ -24,6 +28,9 @@
                                 <div class="item" data-value="3">3</div>
                                 <div class="item" data-value="5">5</div>
                                 <div class="item" data-value="10">10</div>
+                                <div class="item" data-value="10">20</div>
+                                <div class="item" data-value="10">50</div>
+                                <div class="item" data-value="10">100</div>
                             </div>
                         </div>
                     </div>

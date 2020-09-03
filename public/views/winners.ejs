@@ -4,7 +4,7 @@
     <div class="ui container fluid linear-bg">
         <div class="content">
             <div class="page winners">
-                <% if(response.length) { %>
+                <% if(typeof(response) !== 'undefined' && response.length) { %>
                     <h1 class="color white font-comfortaa">
                         Winners
                         <span style="text-transform: capitalize;">(<%= winner_type %>)</span>
@@ -17,6 +17,10 @@
                     <%# Render Tweets %>
                     <% } else if(winner_type === 'tweets') { %>
                         <%- include('./components/renderTweets', { data: response }) %>
+
+                    <%# Render Retweets %>
+                    <% } else if(winner_type === 'retweets') { %>
+                        <%- include('./components/renderRetweets', { data: response }) %>
                     <% } %>
 
                 <% } else { %>

@@ -3,6 +3,7 @@ const app = new Vue({
     data: {
         chosenOption: null,
         chosenWinnersCount: null,
+        tweetUrl: null,
     },
     created() {
 
@@ -27,6 +28,11 @@ const app = new Vue({
             }
             if(this.chosenWinnersCount == null) {
                 alert('Plese select how many winners can be maximum');
+                e.preventDefault();
+                return false;
+            }
+            if(this.chooseOption === 'retweets' && this.tweetUrl === '') {
+                alert('Please provide a tweet link');
                 e.preventDefault();
                 return false;
             }

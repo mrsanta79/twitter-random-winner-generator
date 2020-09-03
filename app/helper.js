@@ -1,12 +1,12 @@
 module.exports = {
-    response: function (success = false, data = null, message = null) {
+    response: (success = false, data = null, message = null) => {
         return {
             success: success,
             data: data === null || data.length < 1 ? null : data,
             message: message
         }
     },
-    generateRandomWinners: function (data, maxItem = 1) {
+    generateRandomWinners: (data, maxItem = 1) => {
         if (!Array.isArray(data)) {
             throw new Error('Provided data is not an array');
         }
