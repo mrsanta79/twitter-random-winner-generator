@@ -1,46 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('./layouts/header') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div id="app">
+    <div class="ui container fluid linear-bg">
+        <div class="content">
+            <div class="page winners">
+                <% if(response.length) { %>
+                    <h1 class="color white font-comfortaa">
+                        Winners
+                        <span style="text-transform: capitalize;">(<%= winner_type %>)</span>
+                    </h1>
 
-    <title>
-        <%= process.env.APP_NAME %>
-    </title>
+                    <%# Render Followers %>
+                    <% if(winner_type === 'followers') { %>
+                        <%- include('./components/renderFollowers', { data: response }) %>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
-    <link rel="stylesheet" href="/assets/css/app.css">
-</head>
+                    <%# Render Tweets %>
+                    <% } else if(winner_type === 'tweets') { %>
+                        <%- include('./components/renderTweets', { data: response }) %>
+                    <% } %>
 
-<body>
-    <div id="app">
-        <div class="ui container fluid linear-bg">
-            <div class="content">
-                <div class="page winners">
-
-                </div>
+                <% } else { %>
+                    <h1 class="color white font-comfortaa">No one won!</h1>
+                <% } %>
+                <a href="/competition" type="button" class="ui medium button standard inverted">
+                    <i class="fas fa-chevron-left" style="margin-right: 10px;"></i>
+                    Choose another option
+                </a>
+                <button type="button" class="ui medium button standard inverted" onclick="window.location.reload()">
+                    Regenerate random winners
+                    <i class="fas fa-redo" style="margin-left: 10px;"></i>
+                </button>
             </div>
         </div>
-
-        <% if(!is_cookie_accepted) { %>
-            <div id="cookie-warning">
-                <h5>
-                    This website uses cookies to ensure you get the best experience on our website.
-                    <a href="#">Learn More</a>
-                </h5>
-                <button type="button" class="ui button standard inverted" id="login-with-twitter" v-on:click="postCookieAccept()">Accept</button>
-            </div>
-            <% } %>
     </div>
 
-    <!-- JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
-    <script src="/assets/js/app.js"></script>
-</body>
+    <% if(!is_cookie_accepted) { %>
+        <div id="cookie-warning">
+            <h5>
+                This website uses cookies to ensure you get the best experience on our website.
+                <a href="#">Learn More</a>
+            </h5>
+            <button type="button" class="ui button standard inverted" id="login-with-twitter" v-on:click="postCookieAccept()">Accept</button>
+        </div>
+    <% } %>
+</div>
 
-</html>
+<%- include('./layouts/footer') %>

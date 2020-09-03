@@ -17,7 +17,7 @@ const app = new Vue({
             this.chosenOption = option;
         },
         chooseWinnersCount: function() {
-            this.chosenWinnersCount = document.querySelector('[name=max-winners]').value;
+            this.chosenWinnersCount = document.querySelector('[name=max_winners]').value;
         },
         generateRandom: function(e) {
             if(this.chosenOption == null) {
@@ -30,7 +30,7 @@ const app = new Vue({
                 e.preventDefault();
                 return false;
             }
-            
+
             return true;
         }
     }

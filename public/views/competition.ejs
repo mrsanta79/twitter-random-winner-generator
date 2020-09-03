@@ -1,68 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('./layouts/header') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div id="app">
+    <div class="ui container fluid linear-bg">
+        <div class="content">
+            <div class="page competition">
+                <h2 class="color white font-comfortaa">Will the competition and choosing the winner take place?</h2>
+                <form action="/winners" method="POST" name="generate-winners"
+                    enctype="application/x-www-form-urlencoded">
+                    <div class="options">
+                        <input type="hidden" name="winner_type" :value="chosenOption">
 
-    <title>
-        <%= process.env.APP_NAME %>
-    </title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
-    <link rel="stylesheet" href="/assets/css/app.css">
-</head>
-
-<body>
-    <div id="app">
-        <div class="ui container fluid linear-bg">
-            <div class="content">
-                <div class="page competition">
-                    <h2 class="color white font-comfortaa">Will the competition and choosing the winner take place?</h2>
-                    <form action="/winners" method="POST" name="generate-winners">
-                        <div class="options">
-                            <a href="followers" v-on:click="chooseOption('followers', $event)" v-bind:class="chosenOption != null && chosenOption === 'followers' ? 'active' : ''">Followers</a>
-                            <a href="comments" v-on:click="chooseOption('comments', $event)" v-bind:class="chosenOption != null && chosenOption === 'comments' ? 'active' : ''">Comments</a>
-                            <a href="tweets" v-on:click="chooseOption('tweets', $event)" v-bind:class="chosenOption != null && chosenOption === 'tweets' ? 'active' : ''">Tweets</a>
-                        </div>
-                        <h2 class="color white font-comfortaa" style="margin-top: 50px;">Maximum number of winners?</h2>
-                        <div class="">
-                            <div class="ui selection dropdown">
-                                <input type="hidden" name="max-winners" v-on:change="chooseWinnersCount()">
-                                <i class="dropdown icon"></i>
-                                <div class="default text">Choose...</div>
-                                <div class="menu">
-                                    <div class="item" data-value="1">1</div>
-                                    <div class="item" data-value="3">3</div>
-                                    <div class="item" data-value="5">5</div>
-                                    <div class="item" data-value="10">10</div>
-                                </div>
+                        <a href="followers" v-on:click="chooseOption('followers', $event)" v-bind:class="chosenOption != null && chosenOption === 'followers' ? 'active' : ''">Followers</a>
+                        <a href="tweets" v-on:click="chooseOption('tweets', $event)" v-bind:class="chosenOption != null && chosenOption === 'tweets' ? 'active' : ''">Tweets</a>
+                    </div>
+                    <h2 class="color white font-comfortaa" style="margin-top: 50px;">Maximum number of winners?</h2>
+                    <div class="">
+                        <div class="ui selection dropdown">
+                            <input type="hidden" name="max_winners" v-on:change="chooseWinnersCount()">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">Choose...</div>
+                            <div class="menu">
+                                <div class="item" data-value="1">1</div>
+                                <div class="item" data-value="3">3</div>
+                                <div class="item" data-value="5">5</div>
+                                <div class="item" data-value="10">10</div>
                             </div>
                         </div>
-                        <button type="submit" class="ui big button standard inverted" id="start-competition" v-on:click="generateRandom($event)">Generate Random Winners</button>
-                    </form>
-                </div>
+                    </div>
+                    <button type="submit" class="ui medium button standard inverted" id="start-competition" v-on:click="generateRandom($event)">
+                        Generate Random Winners
+                        <i class="fas fa-random" style="margin-left: 10px;"></i>
+                    </button>
+                </form>
             </div>
         </div>
-
-        <% if(!is_cookie_accepted) { %>
-            <div id="cookie-warning">
-                <h5>
-                    This website uses cookies to ensure you get the best experience on our website.
-                    <a href="#">Learn More</a>
-                </h5>
-                <button type="button" class="ui button standard inverted" id="login-with-twitter" v-on:click="postCookieAccept()">Accept</button>
-            </div>
-            <% } %>
     </div>
 
-    <!-- JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
-    <script src="/assets/js/app.js"></script>
-</body>
+    <% if(!is_cookie_accepted) { %>
+        <div id="cookie-warning">
+            <h5>
+                This website uses cookies to ensure you get the best experience on our website.
+                <a href="#">Learn More</a>
+            </h5>
+            <button type="button" class="ui button standard inverted" id="login-with-twitter"
+                v-on:click="postCookieAccept()">Accept</button>
+        </div>
+    <% } %>
+</div>
 
-</html>
+<%- include('./layouts/footer') %>

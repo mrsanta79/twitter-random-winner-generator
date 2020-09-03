@@ -1,6 +1,5 @@
 const apiRoutes = require('express').Router();
 const { response } = require('../helper');
-const helper = require('../helper');
 
 // API Routes
 apiRoutes.get('/accept-cookie', (req, res) => {
@@ -9,7 +8,7 @@ apiRoutes.get('/accept-cookie', (req, res) => {
     const data = {
         is_cookie_accepted: true
     }
-    res.status(200).send(helper.response(true, data, 'Cookies saved'));
+    res.status(200).send(response(true, data, 'Cookies saved'));
 });
 
 apiRoutes.post('/accept', (req, res, next) => {

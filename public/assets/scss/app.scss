@@ -35,8 +35,8 @@
         background: linear-gradient(135deg, #206a5d, #91d18b);
     }
     .page {
+        text-align: center;
         &.home {
-            text-align: center;
             overflow: hidden;
             .bg-waves {
                 position: absolute;
@@ -64,7 +64,6 @@
             }
         }
         &.competition {
-            text-align: center;
             .options {
                 display: flex;
                 flex-direction: column;
@@ -92,6 +91,88 @@
             }
             #start-competition {
                 margin-top: 50px;
+            }
+        }
+        &.winners {
+            .ui.button.standard {
+                margin-bottom: 10px;
+            }
+            .followers-profiles,
+            .tweets-profiles {
+                max-height: 400px;
+                width: 400px;
+                overflow: auto;
+                padding: 5px 5px 10px 5px;
+                box-sizing: border-box;
+                margin: 20px auto 30px auto;
+                .profile-card {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    background: #f5f5f5;
+                    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
+                    padding: 10px;
+                    box-sizing: border-box;
+                    border-radius: 10px;
+                    color: #555;
+                    transition: box-shadow 0.3s ease-in-out;
+                    &:not(:last-child) {
+                        margin-bottom: 20px;
+                    }
+                    &:hover {
+                        box-shadow: 0 5px 3px 2px rgba(0, 0, 0, 0.4);
+                    }
+                    .profile-image img {
+                        width: 50px;
+                        height: 50px;
+                        object-fit: cover;
+                    }
+                    .profile-details {
+                        display: flex;
+                        flex-direction: column;
+                        margin-left: 20px;
+                        .name,
+                        .username {
+                            margin-bottom: 3px;
+                            text-align: left;
+                            max-width: 260px;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                            font-size: 20px;
+                            font-family: 'Comfortaa', sans-serif;
+                        }
+                        .username {
+                            margin: 0;
+                            font-size: 16px;
+                            font-family: 'Raleway', sans-serif;
+                        }
+                    }
+                }
+            }
+            .tweets-profiles {
+                .profile-card {
+                    flex-direction: column;
+                    align-items: initial;
+                    .profile {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        .profile-details {
+                            margin-left: 10px;
+                            .name,
+                            .username {
+                                font-size: 12px;
+                                max-width: 300px;
+                            }
+                        }
+                    }
+                    .tweet p {
+                        text-align: left;
+                        margin-top: 10px;
+                        font-weight: 600;
+                    }
+                }
             }
         }
     }
@@ -130,5 +211,32 @@
         margin-right: unset !important;
         padding-left: 1em;
         padding-right: 1em;
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    .ui.container.fluid {
+        .page {
+            &.winners {
+                .followers-profiles {
+                    width: 100%;
+                    .profile-card .profile-details {
+                        .name,
+                        .username {
+                            max-width: 220px;
+                        }
+                    }
+                }
+                .tweets-profiles {
+                    width: 100%;
+                    .profile-card .profile-details {
+                        .name,
+                        .username {
+                            max-width: 230px;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

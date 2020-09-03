@@ -8,6 +8,7 @@ const fs = require('fs');
 const https = require('https');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const helper = require('./app/helper');
 
 require('dotenv').config();
 
@@ -29,7 +30,9 @@ app.use(helmet.permittedCrossDomainPolicies());
 app.use(helmet.referrerPolicy());
 app.use(helmet.xssFilter());
 app.use(cors());
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({ type: 'application/*+json' }));
 app.use(cookieParser());
 app.use(session({
     user: null,

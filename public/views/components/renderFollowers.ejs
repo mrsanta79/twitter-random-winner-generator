@@ -1,0 +1,13 @@
+<div class="followers-profiles">
+    <% data.forEach((item, key) => { %>
+        <a href="<%= `https://twitter.com/${item.screen_name}` %>" class="profile-card" target="_blank">
+            <div class="profile-image">
+                <img src="<%= item.profile_image_url_https %>" alt="<%= item.screen_name %>" class="ui tiny circular image" />
+            </div>
+            <div class="profile-details">
+                <h2 class="name"><%= item.name %></h2>
+                <h4 class="username">&commat;<%= item.screen_name %></h4>
+            </div>
+        </a>
+    <% }); %>
+</div>

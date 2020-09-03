@@ -23,6 +23,7 @@
         "helmet": "^4.0.0",
         "redirect-ssl": "^2.0.0",
         "tslib": "^2.0.1",
+        "twitter": "^1.7.1",
         "twitter-login": "^1.1.5"
     }
 }
