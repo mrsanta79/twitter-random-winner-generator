@@ -2,9 +2,10 @@ const apiRoutes = require('express').Router();
 const Twitter = require('twitter');
 
 const helper = require('../helper');
+const { appUrl } = require('../helper');
 
 // API Routes
-apiRoutes.get('/accept-cookie', (req, res) => {
+apiRoutes.get(appUrl('/accept-cookie'), (req, res) => {
     const expiryTime = 2592000000; // in MS = 30 Days
     res.cookie('cookie_accepted', true, {
         expire: expiryTime + Date.now()
@@ -15,7 +16,7 @@ apiRoutes.get('/accept-cookie', (req, res) => {
     res.status(200).send(helper.response(true, data, 'Cookies saved'));
 });
 
-apiRoutes.post('/winners', async (req, res) => {
+apiRoutes.post(appUrl('/winners'), async (req, res) => {
     if(typeof(req.body.user) === 'undefined' || req.body.user === '') {
         res.json(helper.response(false, null, 'User info not found!'));
     }

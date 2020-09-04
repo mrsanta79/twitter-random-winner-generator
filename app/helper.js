@@ -19,5 +19,8 @@ module.exports = {
         });
 
         return shuffled.slice(0, maxItem);
+    },
+    appUrl: (path = String) => {
+        return process.env.APP_ROOT_DIR + (path.startsWith('/') ? path.substr(1) : path);
     }
 }

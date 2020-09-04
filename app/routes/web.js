@@ -5,6 +5,7 @@ const TwitterLogin = require('twitter-login');
 const Twitter = require('twitter');
 
 const helper = require('../helper');
+const { appUrl } = require('../helper');
 
 // Force HTTPS if SSL file is available
 if (fs.existsSync(process.env.SSL_PRIVKEY) && fs.existsSync(process.env.SSL_FULLCHAIN)) {
@@ -22,7 +23,7 @@ const twt = new TwitterLogin({
 });
 
 // Web Routes
-webRoutes.get('/', (req, res) => {
+webRoutes.get(appUrl('/'), (req, res) => {
     const data = {
         is_cookie_accepted: Boolean(req.cookies.cookie_accepted) || false,
         user: req.session.user,
@@ -30,7 +31,7 @@ webRoutes.get('/', (req, res) => {
     res.status(200).render('index', data);
 });
 
-webRoutes.get('/competition', (req, res) => {
+webRoutes.get(appUrl('/competition'), (req, res) => {
     if(typeof(req.session.user) === 'undefined' || req.session.user === null) {
         res.redirect('/');
         return;
@@ -43,7 +44,7 @@ webRoutes.get('/competition', (req, res) => {
     res.status(200).render('competition', data);
 });
 
-webRoutes.all('/winners', async (req, res) => {
+webRoutes.all(appUrl('/winners'), async (req, res) => {
     if(typeof(req.session.user) === 'undefined' || req.session.user === null) {
         res.redirect('/');
         return;
@@ -113,7 +114,7 @@ webRoutes.all('/winners', async (req, res) => {
 });
 
 // Auth
-webRoutes.get('/login', async (req, res, next) => {
+webRoutes.get(appUrl('/login'), async (req, res, next) => {
     try {
         const response = await twt.login();
 
@@ -124,7 +125,7 @@ webRoutes.get('/login', async (req, res, next) => {
     }
 });
 
-webRoutes.get('/login/status', async (req, res) => {
+webRoutes.get(appUrl('/login/status'), async (req, res) => {
     try {
         const oAuthParam = {
             oauth_token: req.query.oauth_token,
