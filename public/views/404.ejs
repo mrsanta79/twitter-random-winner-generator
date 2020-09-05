@@ -6,17 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page not found!</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/app.css">
     <style type="text/css">
-        body {
-            height: 100vh;
-        }
         * {
             margin: 0;
             color: #fff;
-        }
-        .ui.container.fluid {
-            align-item: center;
         }
         img {
             max-width: 200px;
@@ -30,15 +25,27 @@
             font-size: 2em;
             margin-bottom: 30px;
         }
+        p {
+            text-align: center;
+        }
+        .page.404 {
+            overflow: hidden;
+        }
     </style>
 </head>
 
 <body>
-    <div class="ui container fluid linear-bg">
-        <img src="/assets/images/sad-face.svg" alt="">
-        <h1>404</h1>
-        <h3>Page Not Found!</h3>
-        <p>Oops! Looks like you've entered or followed a broken URL.</p>
+    <div id="app">
+        <div class="ui container fluid linear-bg">
+            <div class="content">
+                <div class="page 404">
+                    <img src="/assets/images/sad-face.svg" alt="">
+                    <h1>404</h1>
+                    <h3>Page Not Found!</h3>
+                    <p>Oops! Looks like you've entered or followed a broken URL.</p>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 
