@@ -1,14 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('./layouts/header') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<div id="app">
+    <div class="ui container fluid linear-bg">
+        <div class="content">
+            <div class="page home">
+                <img src="/assets/images/home-page-bg-waves.svg" class="bg-waves">
+                <h1 class="color white font-montserrat-alt">Twitter Winner Picker</h1>
+                <h2 class="color white">Generate random user as an winner for your Twitter giveaway</h2>
+                <a href="/login" type="button" class="ui button primary" id="login-with-twitter">
+                    Continue with Twitter
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+        </div>
+    </div>
 
-<body>
-    <h1>Welcome</h1>
-</body>
+    <% if(!is_cookie_accepted) { %>
+        <div id="cookie-warning">
+            <h5>
+                This website uses cookies to ensure you get the best experience on our website.
+                <a href="#">Learn More</a>
+            </h5>
+            <button type="button" class="ui button standard inverted" id="login-with-twitter" v-on:click="postCookieAccept()">Accept</button>
+        </div>
+    <% } %>
+</div>
 
-</html>
+<%- include('./layouts/footer') %>

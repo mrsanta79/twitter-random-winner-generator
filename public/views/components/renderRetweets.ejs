@@ -1,0 +1,25 @@
+<div class="tweets-profiles">
+    <% data.forEach((item, key) => { %>
+       <% const user = item.retweeted ? item.retweeted_status.user : item.user; %>
+
+        <a href="<%= `https://twitter.com/${item.user.screen_name}/status/${item.id_str}` %>" class="profile-card" target="_blank">
+            <div class="profile">
+                <div class="profile-image">
+                    <img src="<%= user.profile_image_url_https %>" alt="<%= user.screen_name %>" class="ui tiny circular image" />
+                </div>
+                <div class="profile-details">
+                    <h2 class="name"><%= user.name %></h2>
+                    <h4 class="username">
+                        &commat;<%= user.screen_name %>
+
+                        <i class="fas fa-retweet" style="margin-left: 10px;"></i>
+                        Retweeted
+                    </h4>
+                </div>
+            </div>
+            <div class="tweet">
+                <p><%= item.retweeted ? item.retweeted_status.text : item.text %></p>
+            </div>
+        </a>
+    <% }); %>
+</div>
